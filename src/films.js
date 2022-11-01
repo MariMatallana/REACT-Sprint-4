@@ -34,7 +34,7 @@ function getMoviesFromDirector(array, director) {
 function moviesAverageOfDirector(array, director) {
 
   const moviesDirector = []
-  const directorAverage = 0
+  let directorAverage = 0
 
   for (let i = 0; i < array.length; i++) {
     if (array[i].director === director) {
@@ -46,8 +46,8 @@ function moviesAverageOfDirector(array, director) {
     directorAverage += moviesDirector[j].score
   } directorAverage = directorAverage / moviesDirector.length
 
-  console.log("EXERCICE 3 ->", directorAverage.reduce(2))
-  return directorAverage.reduce(2)
+  console.log("EXERCICE 3 ->", directorAverage)
+  return directorAverage
 
 }
 
