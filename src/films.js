@@ -47,29 +47,16 @@ function moviesAverageOfDirector(array, director) {
   } directorAverage = directorAverage / moviesDirector.length
 
   console.log("EXERCICE 3 ->", directorAverage)
-  return directorAverage
+  return Number(directorAverage.toFixed(2))
 
 }
 
 // Exercise 4:  Alphabetic order by title 
 function orderAlphabetically(array) {
 
-  const firstTwenty = []
-
-  for (let i = 0; i < array[20]; i++) {
-    firstTwenty.push(array[i].title)
-  }
-
-  firstTwenty.sort((a, b) => {
-    if (a.title < b.title) {
-      return -1;
-    }
-    if (a.title > b.title) {
-      return 1;
-    }
-
-    return 0;
-  })
+  let firstTwenty = [...array].map(movie => movie.title)
+  .sort()
+  .slice(0,20)
 
   console.log("EXERCICE 4 ->", firstTwenty)
   return firstTwenty;
@@ -87,6 +74,7 @@ function orderByYear(array) {
   }
 
   moviesByYear.sort((a, b) => {
+    
     if (a.year < b.year) {
       return -1;
     }
@@ -94,10 +82,10 @@ function orderByYear(array) {
       return 1;
     }
 
-    if (a.title.toLowerCase() < b.year.toLowerCase()) {
+    if (a.title.toLowerCase() < b.year) {
       return -1;
     }
-    if (a.title.toLowerCase() > b.year.toLowerCase()) {
+    if (a.title.toLowerCase() > b.year) {
       return 1;
     }
 
@@ -111,23 +99,25 @@ function orderByYear(array) {
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory(array, genre) {
 
-  const moviesByGenre = []
-  const averageByCategory = 0
+  let moviesByGenre = array.filter((movie) => {
+     if (movie.genre === genre) {
+      return true
+     }
+     else {
+      return false
+     }
+  })
 
-  for (let i = 0; i < array.length; i++) {
-    if (array[i].genre === genre) {
-      moviesByGenre.push(array[i])
-    }
-  }
+  let averageByCategory = moviesByGenre.filter(movies => movies.score >= 0)
 
-  for (let h = 0; h < moviesByGenre.length; h++) {
-    averageByCategory = averageByCategory + moviesByGenre[i].score
+  /*for (let h = 0; h <= moviesByGenre.length; h++) {
+    averageByCategory += moviesByGenre[h].score
   }
   averageByCategory = averageByCategory / moviesByGenre.length
-
+*/
   console.log("EXERCICE 6 ->", averageByCategory)
-  return averageByCategory
-}
+  return averageByCategory 
+} 
 
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes() {
