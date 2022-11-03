@@ -4,7 +4,7 @@ const movies = require("./data");
 function getAllDirectors(array) {
   let result = array.map((movie) => movie.director)
 
-  console.log("EXERCICE 1 ->", result);
+  // console.log("EXERCICE 1 ->", result);
   return result;
 }
 
@@ -14,18 +14,7 @@ function getMoviesFromDirector(array, director) {
     return movie.director === director;
   })
 
-  //.map(function (movie) {
-  //  return movie.director
-  //})
-
-  /* const moviesFromDirector = []
-    for (let i = 0; i < array.length; i++) {
-        if (array[i].director === director) {
-          moviesFromDirector.push(array[i].title)
-        }
-    } */
-
-  console.log("EXERCICE 2 ->", moviesFromDirector)
+ // console.log("EXERCICE 2 ->", moviesFromDirector)
   return moviesFromDirector;
 
 }
@@ -46,7 +35,7 @@ function moviesAverageOfDirector(array, director) {
     directorAverage += moviesDirector[j].score
   } directorAverage = directorAverage / moviesDirector.length
 
-  console.log("EXERCICE 3 ->", directorAverage)
+ // console.log("EXERCICE 3 ->", directorAverage)
   return Number(directorAverage.toFixed(2))
 
 }
@@ -58,7 +47,7 @@ function orderAlphabetically(array) {
   .sort()
   .slice(0,20)
 
-  console.log("EXERCICE 4 ->", firstTwenty)
+ // console.log("EXERCICE 4 ->", firstTwenty)
   return firstTwenty;
 
 }
@@ -67,11 +56,7 @@ function orderAlphabetically(array) {
 // Exercise 5: Order by year, ascending
 function orderByYear(array) {
 
-  const moviesByYear = []
-
-  for (let i = 0; i < array.length; i++) {
-    moviesByYear.push(array[i])
-  }
+  const moviesByYear = [...array]
 
   moviesByYear.sort((a, b) => {
     
@@ -81,42 +66,31 @@ function orderByYear(array) {
     if (a.year > b.year) {
       return 1;
     }
-
-    if (a.title.toLowerCase() < b.year) {
+    
+    if (a.title.toLowerCase() < b.title.toLowerCase()) {
       return -1;
     }
-    if (a.title.toLowerCase() > b.year) {
+    if (a.title.toLowerCase() > b.title.toLowerCase()) {
       return 1;
     }
 
     return 0
   });
 
-  console.log("EXERCICE 5 ->", moviesByYear)
+ // console.log("EXERCICE 5 ->", moviesByYear)
   return moviesByYear;
 }
 
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory(array, genre) {
 
-  let moviesByGenre = array.filter((movie) => {
-     if (movie.genre === genre) {
-      return true
-     }
-     else {
-      return false
-     }
-  })
+  const moviesByGenre = array.filter( movie => movie.genre == genre)
 
-  let averageByCategory = moviesByGenre.filter(movies => movies.score >= 0)
-
-  /*for (let h = 0; h <= moviesByGenre.length; h++) {
-    averageByCategory += moviesByGenre[h].score
-  }
-  averageByCategory = averageByCategory / moviesByGenre.length
-*/
-  console.log("EXERCICE 6 ->", averageByCategory)
-  return averageByCategory 
+  const averageByCategory = moviesByGenre.reduce((acumulado, sig) => acumulado += sig.score, 0)
+  let averageTotal = averageByCategory / moviesByGenre.length
+ 
+  console.log("EXERCICE 6 ->", moviesByGenre, averageTotal)
+  return Number(averageTotal.toFixed(2))
 } 
 
 // Exercise 7: Modify the duration of movies to minutes
