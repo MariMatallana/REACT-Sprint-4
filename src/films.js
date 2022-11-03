@@ -95,7 +95,7 @@ function moviesAverageByCategory(array, genre) {
 
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes() {
-
+   
 
 }
 
