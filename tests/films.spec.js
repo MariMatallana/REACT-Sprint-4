@@ -357,7 +357,7 @@ describe('Function "moviesAverageByCategory"', () => {
         score: 5,
         genre: ['Action'],
       },
-      {
+      { 
         score: '',
         genre: ['Action'],
       }

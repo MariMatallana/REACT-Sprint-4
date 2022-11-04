@@ -22,18 +22,14 @@ function getMoviesFromDirector(array, director) {
 // Exercise 3: Calculate the average of the films of a given director.
 function moviesAverageOfDirector(array, director) {
 
-  const moviesDirector = []
-  let directorAverage = 0
+  const moviesDirector = array.filter( movie => movie.director == director)
 
-  for (let i = 0; i < array.length; i++) {
-    if (array[i].director === director) {
-      moviesDirector.push(array[i])
-    }
-  }
+  let directorAverage = moviesDirector.reduce((count, movie) => {
+    count += movie.score
+    return (count)
+  }, 0)
 
-  for (let j = 0; j < moviesDirector.length; j++) {
-    directorAverage += moviesDirector[j].score
-  } directorAverage = directorAverage / moviesDirector.length
+  directorAverage = directorAverage / moviesDirector.length
 
  // console.log("EXERCICE 3 ->", directorAverage)
   return Number(directorAverage.toFixed(2))
@@ -85,22 +81,50 @@ function orderByYear(array) {
 function moviesAverageByCategory(array, genre) {
 
   const moviesByGenre = array.filter( movie => movie.genre == genre)
+  
+  let averageByCategory = moviesByGenre.reduce((count, movie) => {
+      count += movie.score
+    return (count)
+  }, 0)
 
-  const averageByCategory = moviesByGenre.reduce((acumulado, sig) => acumulado += sig.score, 0)
-  let averageTotal = averageByCategory / moviesByGenre.length
- 
-  console.log("EXERCICE 6 ->", moviesByGenre, averageTotal)
-  return Number(averageTotal.toFixed(2))
+  averageByCategory = averageByCategory / moviesByGenre.length 
+
+  console.log("EXERCICE 6 ->", moviesByGenre, averageByCategory, )
+  return Number(averageByCategory.toFixed(2)) 
 } 
 
 // Exercise 7: Modify the duration of movies to minutes
-function hoursToMinutes() {
+function hoursToMinutes(array) {
    
+  const moviesInMinutes = [].concat(array)
 
+
+
+// console.log("EXERCICE 7 ->",  )
+return moviesInMinutes
 }
 
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear() {
+function bestFilmOfYear(array, year) {
+
+  const moviesByYear2 = array.filter(movie => movie.year === year)
+
+  moviesByYear2.sort((a, b) => {
+    
+    if (a.score < b.score) {
+      return -1;
+    }
+    if (a.score > b.score) {
+      return 1;
+    }
+  })
+  
+  moviesByYear2.reverse()
+  const bestMovieOfTheYear = []
+  bestMovieOfTheYear.push(moviesByYear2[0])
+
+  // console.log("EXERCICE 8 ->",  moviesByYear2, bestMovieOfTheYear)
+  return bestMovieOfTheYear
 
 }
 
