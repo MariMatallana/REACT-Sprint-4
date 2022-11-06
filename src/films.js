@@ -13,7 +13,7 @@ function getMoviesFromDirector(array, director) {
   const moviesFromDirector = array.filter(function (movie) {
     return movie.director === director;
   })
-
+ 
  // console.log("EXERCICE 2 ->", moviesFromDirector)
   return moviesFromDirector;
 
