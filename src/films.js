@@ -79,17 +79,24 @@ function orderByYear(array) {
 
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory(array, genre) {
+  let moviesNoScore = 0
 
   const moviesByGenre = array.filter( movie => movie.genre == genre)
   
   let averageByCategory = moviesByGenre.reduce((count, movie) => {
-      count += movie.score
+      if (movie.score >= 0) {
+          count += movie.score
+      }
+      if (!movie.score) {
+        moviesNoScore += 1
+      }
     return (count)
   }, 0)
 
-  averageByCategory = averageByCategory / moviesByGenre.length 
 
-  console.log("EXERCICE 6 ->", moviesByGenre, averageByCategory, )
+  averageByCategory = averageByCategory / (moviesByGenre.length - moviesNoScore)
+
+  console.log("EXERCICE 6 ->", averageByCategory, )
   return Number(averageByCategory.toFixed(2)) 
 } 
 
@@ -127,8 +134,6 @@ function bestFilmOfYear(array, year) {
   return bestMovieOfTheYear
 
 }
-
-
 
 // The following is required to make unit tests work.
 /* Environment setup. Do not modify the below code. */
